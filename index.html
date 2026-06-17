@@ -68,33 +68,42 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 50%, #1B4332 100%);
+    background: #1B4332;
   }
 
   .hero-video-wrap {
     position: absolute;
     inset: 0;
     z-index: 0;
+    overflow: hidden;
   }
 
-  .hero-video-wrap iframe {
+  .hero-video-wrap video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 177.78vh;
-    height: 100vh;
-    min-width: 100%;
-    min-height: 56.25vw;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
     transform: translate(-50%, -50%);
-    pointer-events: none;
+    object-fit: cover;
   }
 
   .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(10,30,20,0.75) 0%, rgba(10,30,20,0.6) 60%, rgba(10,30,20,0.85) 100%);
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,30,20,0.72) 0%, rgba(10,30,20,0.55) 60%, rgba(10,30,20,0.82) 100%);
     z-index: 1;
   }
+
+  /* FLOATING ICON ANIMATION */
+  @keyframes floatIcon {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  .service-card:nth-child(1) .service-icon { animation: floatIcon 3s ease-in-out infinite 0s; }
+  .service-card:nth-child(2) .service-icon { animation: floatIcon 3s ease-in-out infinite 0.4s; }
+  .service-card:nth-child(3) .service-icon { animation: floatIcon 3s ease-in-out infinite 0.8s; }
+  .service-card:nth-child(4) .service-icon { animation: floatIcon 3s ease-in-out infinite 1.2s; }
+  .service-card:nth-child(5) .service-icon { animation: floatIcon 3s ease-in-out infinite 1.6s; }
 
   .hero-content {
     position: relative;
@@ -107,6 +116,600 @@
   .hero-badge {
     display: inline-block;
     background: rgba(82, 183, 136, 0.2);
+    border: 1px solid var(--green-light);
+    color: var(--green-pale);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 8vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 span { color: var(--green-light); }
+
+  .hero p {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 300;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green-light);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #40916C; transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollDown 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 24px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    color: var(--text-light);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* SERVICES */
+  .services { background: var(--gray); }
+
+  .services-header { margin-bottom: 52px; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 8px 40px rgba(27,67,50,0.15);
+    border-bottom-color: var(--green-light);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* WHY US */
+  .why { background: var(--green-dark); }
+
+  .why .section-title { color: var(--white); }
+  .why .section-label { color: var(--green-light); }
+  .why .section-sub { color: rgba(255,255,255,0.7); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    margin-top: 52px;
+  }
+
+  .why-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 36px 28px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .why-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .why-card h3 {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .why-card p {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* REVIEWS */
+  .reviews { background: var(--white); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 52px;
+  }
+
+  .review-card {
+    background: var(--gray);
+    border-radius: 12px;
+    padding: 32px;
+    border-left: 4px solid var(--green-light);
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .review-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .stars { color: #f4a22d; font-size: 18px; margin-bottom: 14px; }
+
+  .review-text {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+
+  .reviewer {
+    font-weight: 600;
+    color: var(--green-dark);
+    font-size: 14px;
+  }
+
+  .reviewer span {
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--gray); }
+
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 52px;
+  }
+
+  @media (max-width: 700px) {
+    .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    color: var(--text-light);
+    font-size: 15px;
+  }
+
+  .contact-detail .icon { font-size: 20px; }
+
+  .call-btn {
+    display: block;
+    background: var(--green-dark);
+    color: var(--white);
+    text-decoration: none;
+    padding: 18px 24px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 28px;
+    transition: background 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .call-btn:hover { background: var(--green-mid); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 14px 18px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.3s;
+    outline: none;
+    width: 100%;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--green-light); }
+
+  .contact-form textarea { height: 130px; resize: vertical; }
+
+  .contact-form button {
+    background: var(--green-light);
+    color: var(--white);
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .contact-form button:hover { background: #40916C; }
+
+  /* FOOTER */
+  footer {
+    background: #0d2318;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  footer .footer-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  footer p { font-size: 14px; line-height: 1.8; }
+
+  footer a { color: var(--green-light); text-decoration: none; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .nav-logo { font-size: 13px; max-width: 160px; }
+    section { padding: 60px 16px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Carlos Martínez<br>Landscaping LLC</div>
+  <div class="nav-phone"><a href="tel:6149731348">📞 (614) 973-1348</a></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-video-wrap">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/2491284/2491284-uhd_2560_1440_24fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ 5.0 Stars · Worthington, OH</div>
+    <h1>Your Dream Lawn,<br><span>Delivered.</span></h1>
+    <p>Professional landscaping services you can trust.<br>Reliable, affordable, and always on time.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="tel:6149731348" class="btn-outline">Call Now</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">From weekly lawn care to full landscape transformations — we handle it all with professionalism and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <h3>Lawn Mowing & Maintenance</h3>
+        <p>Consistent, reliable mowing and upkeep to keep your lawn looking pristine all season long.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌱</span>
+        <h3>Weed Control</h3>
+        <p>Targeted treatments to eliminate weeds and protect your lawn from unwanted growth.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌸</span>
+        <h3>Garden Work</h3>
+        <p>Beautiful garden design, planting, and maintenance to enhance your outdoor space.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏡</span>
+        <h3>Landscape Design</h3>
+        <p>Custom landscape plans tailored to your vision, budget, and property's unique features.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🪵</span>
+        <h3>Fencing Installation</h3>
+        <p>Professional fence installation to add privacy, security, and beauty to your property.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="container">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">The Carlos Martínez Difference</h2>
+    <p class="section-sub">We're not just another lawn company. We're your neighbors, and we treat your property like our own.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">5.0★</div>
+        <h3>Perfect Rating</h3>
+        <p>9 five-star Google reviews from real customers in Worthington and surrounding areas.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">🏠</div>
+        <h3>Locally Owned</h3>
+        <p>We're part of this community. No call centers, no middlemen — just Carlos and his team showing up for you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">$0</div>
+        <h3>Free Estimates</h3>
+        <p>Get a detailed, no-obligation quote at no cost. Transparent pricing, no hidden fees — ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-label">What Clients Say</div>
+    <h2 class="section-title">Real Reviews, Real Results</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Carlos is very reliable, reasonable and hard working gentleman, follows strict lawn schedules and brings peace of mind so the owner doesn't have to worry about anything. I will highly recommend him."</p>
+        <div class="reviewer">Mallikarjun C. <span>· Verified Google Review</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Worked with Carlos on a redesign project in my community. He was very detailed and patient when working with us. He listened to our concerns and made the necessary changes to get the design we wanted. His pricing is very affordable compared to bigger landscaping companies. I would definitely recommend him and his company."</p>
+        <div class="reviewer">Jose <span>· Verified Google Review</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Great landscaping company to work with, reasonable prices, quality service and always on time."</p>
+        <div class="reviewer">Ibrahim Hejazin <span>· Verified Google Review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Request a Free Quote</h2>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Let's transform your outdoor space.</h3>
+        <div class="contact-detail">
+          <span class="icon">📍</span>
+          <span>875 Charnwood Ln, Worthington, OH 43085</span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon">⏰</span>
+          <span>Opens 8:00 AM · Monday – Saturday</span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon">⭐</span>
+          <span>5.0 Stars · 9 Google Reviews</span>
+        </div>
+        <a href="tel:6149731348" class="call-btn">📞 (614) 973-1348</a>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="tel" placeholder="Your Phone Number" required>
+        <textarea placeholder="Tell us about your project..."></textarea>
+        <button type="submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Carlos Martínez Landscaping Management Service LLC</div>
+  <p>875 Charnwood Ln, Worthington, OH 43085</p>
+  <p><a href="tel:6149731348">(614) 973-1348</a></p>
+  <p style="margin-top:16px; font-size:12px;">© 2025 Carlos Martínez Landscaping Management Service LLC. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .why-card, .review-card').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✅ Message Sent!';
+    btn.style.background = '#1B4332';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(27, 67, 50, 0.99)';
+    } else {
+      nav.style.background = 'rgba(27, 67, 50, 0.97)';
+    }
+  });
+</script>
+</body>
+</html>
     border: 1px solid var(--green-light);
     color: var(--green-pale);
     font-size: 12px;
